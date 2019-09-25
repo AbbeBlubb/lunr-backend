@@ -23,4 +23,5 @@ const createDocumentsArray = pathToFileList => {
     .pipe(fs.createWriteStream('output/documentsArray.json')); // write to output. Before I did the output with hierarchycal spaces: fs.writeFileSync('output/documentsArray.json', JSON.stringify(objectList, null, 2));
 }
 
+// Input: send the list of files to the createDocumentsArray function
 createDocumentsArray('output/file-list-flat.json')

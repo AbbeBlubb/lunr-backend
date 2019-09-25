@@ -1,3 +1,8 @@
+/*
+ * Input: the "files" folder
+ * Output: JSON array containing the file path for each file
+ */
+
 const fs = require('fs');
 const path = require('path');
 
@@ -11,8 +16,7 @@ const walkSync = (dir, fileList = []) => {
   });
 
   fs.writeFileSync('output/file-list-flat.json', JSON.stringify(fileList, null, 2));
-
-  //return fileList;
 }
 
+// Input: send the directory to the walkSync function
 walkSync('files');

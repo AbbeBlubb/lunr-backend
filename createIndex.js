@@ -20,4 +20,5 @@ const createIndex = pathToDocumentsList => {
 
 }
 
+// Input: send the file with documents to the createIndex function
 createIndex('output/documentsArray.json');
