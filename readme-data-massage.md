@@ -2,7 +2,8 @@ node js transform array elements stream
 
 https://stackoverflow.com/questions/16848972/how-to-emit-pipe-array-values-as-a-readable-stream-in-node-js/35672668
 
-
+Scramjet
+https://github.com/signicode/scramjet/blob/master/docs/index.md
 
 https://github.com/substack/stream-handbook/
 

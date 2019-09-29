@@ -1,24 +1,21 @@
 const fs = require('fs'),
-      lunr = require('lunr')
+      lunr = require('lunr'),
+      scramjet = require('scramjet'),
+      JSONStream = require('JSONStream');
 
 
-const createIndex = pathToDocumentsList => {
+const index = lunr(function () {
+  this.ref('filePath');
+  this.field('text');
+  this.metadataWhitelist = ['position'];
 
-  const documents = JSON.parse(fs.readFileSync(pathToDocumentsList, 'utf8'));
-
-  var idx = lunr(function () {
-    this.ref('filePath')
-    this.field('text')
-    //this.metadataWhitelist = ['position']
-
-    documents.forEach(function (doc) {
-      this.add(doc)
-    }, this)
-  })
-
-  fs.writeFileSync('output/index.json', JSON.stringify(idx, null, 2));
-
-}
-
-// Input: send the file with documents to the createIndex function
-createIndex('output/documentsArray.json');
+  fs.createReadStream('output/documentsArray.json')
+    .pipe(JSONStream.parse('*'))
+    .pipe(new scramjet.DataStream)
+    .map(element => {
+      this.add(element);
+    })
+    .on('finish', () => {
+      fs.writeFile('output/index.json', JSON.stringify(index, null, 2), (err) => {console.log(err)});
+    });
+});

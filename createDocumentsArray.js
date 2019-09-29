@@ -1,6 +1,6 @@
  /*
  * Input: JSON file with array with elements containing the file paths
- * Output: JSON file containing objects that equals to Lunr-documents 
+ * Output: JSON file containing objects that equals to Lunr-documents
  */
 
 
@@ -21,7 +21,7 @@ const createDocumentsArray = pathToFileList => {
       }))                                         // extract element (also works for extracting object keys from each object, eg .map(({name}) => name)
     .toJSONArray()                                // create an array stream in JSON
     .pipe(fs.createWriteStream('output/documentsArray.json')); // write to output. Before I did the output with hierarchycal spaces: fs.writeFileSync('output/documentsArray.json', JSON.stringify(objectList, null, 2));
-}
+};
 
 // Input: send the list of files to the createDocumentsArray function
-createDocumentsArray('output/file-list-flat.json')
+createDocumentsArray('output/file-list-flat.json');
