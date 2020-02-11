@@ -16,6 +16,6 @@ const index = lunr(function () {
       this.add(element);
     })
     .on('finish', () => {
-      fs.writeFile('output/index.json', JSON.stringify(index, null, 2), (err) => {console.log(err)});
+      fs.writeFile('output/index.json', JSON.stringify(index, null, 2), err => console.log(err));
     });
 });
